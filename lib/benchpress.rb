@@ -1,6 +1,7 @@
 $:.unshift(File.dirname(__FILE__))
 
 require 'benchmark'
+
 require 'benchpress/runnable'
 require 'benchpress/comparison'
 
@@ -26,4 +27,8 @@ module Benchpress
       # x.report(runnable.name) { n.times &runnable.code_block }
     end
   end
+end
+
+at_exit do
+  benchmark if self.respond_to? :benchmark
 end
