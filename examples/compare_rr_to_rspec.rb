@@ -20,4 +20,4 @@ module CompareRRToRspec
   end
 end
 
-CompareRRToRspec.benchmark
+CompareRRToRspec.benchpress

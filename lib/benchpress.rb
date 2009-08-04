@@ -18,7 +18,7 @@ module Benchpress
   end
   alias bm compare
 
-  def benchmark
+  def benchpress
     n = 1000
     comparison.runnables.each do |runnable|
       puts runnable.name
@@ -30,5 +30,5 @@ module Benchpress
 end
 
 at_exit do
-  benchmark if self.respond_to? :benchmark
+  benchpress if self.respond_to? :benchpress
 end

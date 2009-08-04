@@ -22,4 +22,4 @@ module ExistenceOfMethod
   end
 end
 
-ExistenceOfMethod.benchmark
+ExistenceOfMethod.benchpress
