@@ -13,16 +13,27 @@ module Benchpress
     end
   end
 
+  def repitition
+    @repitition ||= 1000
+  end
+
+  def reps(times)
+    @repitition = times
+  end
+
   def compare(name, &block)
     self.comparison = Comparison.new name, block
   end
   alias bm compare
 
   def benchpress
-    n = 1000
+    puts "Running benchmarks #{repitition} times each"
     comparison.runnables.each do |runnable|
       puts runnable.name
-      puts Benchmark.realtime { n.times &runnable.code_block }
+      time = Benchmark.realtime do
+        repitition.times &runnable.code_block
+      end
+      puts time
       puts
       # x.report(runnable.name) { n.times &runnable.code_block }
     end
