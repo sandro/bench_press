@@ -14,7 +14,7 @@ end
 compare("implicit return") do
   implicit
 end.
-to "explicit return" do
+to("explicit return") do
   explicit
 end
 
