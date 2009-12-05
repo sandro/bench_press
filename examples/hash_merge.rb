@@ -3,19 +3,16 @@ require 'bench_press'
 
 extend BenchPress
 
-def collection
-  @collection ||= [{"_id"=>"4a9b4a823bb6dc41c4000002"}] * 10
-end
-
-compare("hash merge") do
-  collection.each {|h| h.merge(:parent => 1)}
+reps 30_000
+compare("Hash#merge") do
+  {}.merge(:parent => 1)
 end.
-to("hash merge!") do
-  collection.each {|h| h.merge!(:parent => 1)}
+to("Hash#merge!") do
+  {}.merge!(:parent => 1)
 end.
-to("hash store when key is a symbol") do
-  collection.each {|h| h[:parent] = 1}
+to("Hash#store") do
+  {}.store(:parent, 1)
 end.
-to("hash store when key is a string") do
-  collection.each {|h| h['parent'] = 1}
+to("Hash#[]=") do
+  {}.[]=(:parent, 1)
 end
