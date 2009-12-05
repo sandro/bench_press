@@ -5,38 +5,30 @@ begin; require 'rubygems'; rescue LoadError; end
 require 'facter'
 require 'benchmark'
 require 'bench_press/runnable'
-require 'bench_press/comparison'
 require 'bench_press/system_information'
 
 module BenchPress
 
-  def self.extended(base)
-    class << base
-      attr_accessor :comparison
-    end
-  end
-
-  def repetitions
-    @repetitions ||= 1000
+  def runnables
+    @runnables ||= []
   end
 
   def reps(times)
-    @repetitions = times
+    Runnable.repetitions = times
   end
 
-  def compare(name, &block)
-    self.comparison = Comparison.new name, block, repetitions
+  def measure(name, &block)
+    runnables << Runnable.new(name, block)
   end
-  alias bm compare
 
   def bench_press
-    puts "Running benchmarks #{repetitions} times each"
-    comparison.runnables.each do |runnable|
+    puts "Running benchmarks #{Runnable.repetitions} times each"
+    runnables.each do |runnable|
       runnable.run
     end
   end
 end
 
 at_exit do
-  bench_press if self.respond_to? :bench_press
+  bench_press if respond_to?(:bench_press)
 end

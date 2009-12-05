@@ -4,15 +4,19 @@ require 'bench_press'
 extend BenchPress
 
 reps 30_000
-compare("Hash#merge") do
+
+measure "Hash#merge" do
   {}.merge(:parent => 1)
-end.
-to("Hash#merge!") do
+end
+
+measure "Hash#merge!" do
   {}.merge!(:parent => 1)
-end.
-to("Hash#store") do
+end
+
+measure "Hash#store" do
   {}.store(:parent, 1)
-end.
-to("Hash#[]=") do
+end
+
+measure "Hash#[]=" do
   {}.[]=(:parent, 1)
 end

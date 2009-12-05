@@ -11,10 +11,10 @@ def explicit
   return 1
 end
 
-compare("implicit return") do
+measure("implicit return") do
   implicit
-end.
-to("explicit return") do
+end
+measure("explicit return") do
   explicit
 end
 

@@ -11,13 +11,16 @@ module ExistenceOfMethod
 
   a = A.new
 
-  compare('method_defined?') do
+  measure('method_defined?') do
     A.method_defined? :c
-  end.to('respond_to?') do
+  end
+  measure('respond_to?') do
     a.respond_to? :c
-  end.to('instance_methods include') do
+  end
+  measure('instance_methods include') do
     A.instance_methods.include? :c
-  end.to('instance_methods(false) include') do
+  end
+  measure('instance_methods(false) include') do
     A.instance_methods(false).include? :c
   end
 end
