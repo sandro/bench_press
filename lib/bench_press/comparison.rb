@@ -1,10 +1,11 @@
 module BenchPress
   class Comparison
-    attr_reader :runnables, :subject
+    attr_reader :runnables, :subject, :repetitions
 
-    def initialize(name, block)
-      @subject = Runnable.new(name, block)
+    def initialize(name, block, repetitions)
+      @subject = Runnable.new(name, repetitions, block)
       @runnables = [subject]
+      @repetitions = repetitions
     end
 
     def report
@@ -13,7 +14,7 @@ module BenchPress
     end
 
     def to(name, &block)
-      @runnables << Runnable.new(name, block)
+      @runnables << Runnable.new(name, repetitions, block)
       self
     end
   end
