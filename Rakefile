@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "benchpress"
+    gem.name = "bench_press"
     gem.summary = %Q{TODO: one-line summary of your gem}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "sandro.turriate@gmail.com"
-    gem.homepage = "http://github.com/sandro/benchpress"
+    gem.homepage = "http://github.com/sandro/bench_press"
     gem.authors = ["Sandro Turriate"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -30,8 +30,6 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
 end
 
 
-
-
 task :default => :spec
 
 require 'rake/rdoctask'
@@ -44,8 +42,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "benchpress #{version}"
+  rdoc.title = "bench_press #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-

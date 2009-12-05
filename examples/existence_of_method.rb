@@ -1,8 +1,8 @@
 $:.unshift(File.dirname(__FILE__) + "/../lib")
-require 'benchpress'
+require 'bench_press'
 
 module ExistenceOfMethod
-  extend Benchpress
+  extend BenchPress
 
   class A
     def c
@@ -22,4 +22,4 @@ module ExistenceOfMethod
   end
 end
 
-ExistenceOfMethod.benchpress
+ExistenceOfMethod.bench_press

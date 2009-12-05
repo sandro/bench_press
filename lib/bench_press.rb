@@ -1,11 +1,14 @@
 $:.unshift(File.dirname(__FILE__))
 
+begin; require 'rubygems'; rescue LoadError; end
+
+require 'facter'
 require 'benchmark'
+require 'bench_press/runnable'
+require 'bench_press/comparison'
+require 'bench_press/system_information'
 
-require 'benchpress/runnable'
-require 'benchpress/comparison'
-
-module Benchpress
+module BenchPress
 
   def self.extended(base)
     class << base
@@ -26,7 +29,7 @@ module Benchpress
   end
   alias bm compare
 
-  def benchpress
+  def bench_press
     puts "Running benchmarks #{repitition} times each"
     comparison.runnables.each do |runnable|
       puts runnable.name
@@ -41,5 +44,5 @@ module Benchpress
 end
 
 at_exit do
-  benchpress if self.respond_to? :benchpress
+  bench_press if self.respond_to? :bench_press
 end

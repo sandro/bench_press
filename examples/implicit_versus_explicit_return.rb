@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + "/../lib")
-require 'benchpress'
+require 'bench_press'
 
-extend Benchpress
+extend BenchPress
 
 def implicit
   1

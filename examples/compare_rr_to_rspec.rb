@@ -2,10 +2,10 @@ $:.unshift(File.dirname(__FILE__) + "/../lib")
 require "rubygems"
 require "spec/mocks"
 require 'rr'
-require 'benchpress'
+require 'bench_press'
 
 module CompareRRToRspec
-  extend Benchpress
+  extend BenchPress
 
   rspec_object = Object.new
   rr_object = Object.new
@@ -20,4 +20,4 @@ module CompareRRToRspec
   end
 end
 
-CompareRRToRspec.benchpress
+CompareRRToRspec.bench_press

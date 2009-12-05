@@ -1,4 +1,4 @@
-module Benchpress
+module BenchPress
   class Comparison
     attr_reader :runnables, :subject
 

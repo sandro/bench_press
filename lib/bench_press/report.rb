@@ -1,4 +1,4 @@
-module Benchpress
+module BenchPress
   class Report
     attr_reader :label, :runnables, :results
 

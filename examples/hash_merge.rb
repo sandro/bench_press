@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + "/../lib")
-require 'benchpress'
+require 'bench_press'
 
-extend Benchpress
+extend BenchPress
 
 def collection
   @collection ||= [{"_id"=>"4a9b4a823bb6dc41c4000002"}] * 10

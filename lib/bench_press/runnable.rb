@@ -1,4 +1,4 @@
-module Benchpress
+module BenchPress
   class Runnable
     attr_reader :name, :code_block
 
