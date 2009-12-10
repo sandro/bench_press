@@ -6,17 +6,17 @@ extend BenchPress
 reps 30_000
 
 measure "Hash#merge" do
-  {}.merge(:parent => 1)
+  {}.merge(:key => :value)
 end
 
 measure "Hash#merge!" do
-  {}.merge!(:parent => 1)
+  {}.merge!(:key => :value)
 end
 
 measure "Hash#store" do
-  {}.store(:parent, 1)
+  {}.store(:key, :value)
 end
 
 measure "Hash#[]=" do
-  {}.[]=(:parent, 1)
+  {}.[]=(:key, :value)
 end
