@@ -17,13 +17,13 @@ module BenchPress
 
     def runnable_heading
       heading(
-        %("#{runnable_result.fastest.name}" is up to #{runnable_result.slowest.percent_slower}% faster over #{repetitions} repetitions),
+        %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{repetitions} repetitions),
         "-"
       )
     end
 
     def runnable_table
-      runnable_result.runnables.map do |r|
+      result.runnables.map do |r|
         row(run_name(r.name), run_time(r.run_time), run_summary(r))
       end.join("\n")
     end
@@ -51,11 +51,11 @@ module BenchPress
     end
 
     def run_name(content)
-      content.to_s.ljust(runnable_result.longest_name.size + SPACING)
+      content.to_s.ljust(result.longest_name.size + SPACING)
     end
 
     def run_summary(r)
-      if r == runnable_result.fastest
+      if r == result.fastest
         "Fastest"
       else
         "#{r.percent_slower}% Slower"
@@ -63,56 +63,11 @@ module BenchPress
     end
 
     def run_time(secs)
-      secs.to_s.ljust(runnable_result.longest_run_time.size) + " secs" + spacer
+      secs.to_s.ljust(result.longest_run_time.size) + " secs" + spacer
     end
 
-    def runnable_result
-      @runnable_result ||= RunnableResult.new(runnables).evaluate
-    end
-
-    class RunnableResult
-      attr_reader :runnables
-
-      def initialize(runnables)
-        @runnables = runnables
-      end
-
-      def evaluate
-        sort
-        grade
-        self
-      end
-
-      def sort
-        runnables.each {|r| r.run}
-        @runnables = runnables.sort_by {|r| r.run_time}
-      end
-
-      def fastest
-        runnables.first
-      end
-
-      def slowest
-        runnables.last
-      end
-
-      def longest_name
-        runnables.sort_by {|r| r.name.size}.last.name
-      end
-
-      def longest_run_time
-        runnables.sort_by {|r| r.run_time.to_s.size}.last.run_time.to_s
-      end
-
-      def grade
-        runnables.each do |r|
-          r.percent_slower = percentage_slower(r.run_time)
-        end
-      end
-
-      def percentage_slower(time)
-        (((time - fastest.run_time) / time) * 100).to_i
-      end
+    def result
+      @result ||= Result.new(runnables).evaluate
     end
   end
 end
