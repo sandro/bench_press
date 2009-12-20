@@ -66,9 +66,7 @@ module BenchPress
     end
 
     def facts
-      @facts ||= begin
-        Facter.to_hash
-      end
+      @facts ||= Facter.to_hash
     end
 
     def identifier
