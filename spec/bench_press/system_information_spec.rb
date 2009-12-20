@@ -21,11 +21,11 @@ describe BenchPress::SystemInformation do
 
     it "summarizes system information" do
       summary = <<-EOS
-Operating System   Mac OS X 10.6.2 (10C540)
-CPU                Intel Core 2 Duo 2.4 GHz
-Processor Count    2
-Memory             4 GB
-Ruby version       1.8.7 patchlevel 174
+Operating System:    Mac OS X 10.6.2 (10C540)
+CPU:                 Intel Core 2 Duo 2.4 GHz
+Processor Count:     2
+Memory:              4 GB
+Ruby version:        1.8.7 patchlevel 174
       EOS
       BenchPress::SystemInformation.summary.should == summary.strip
     end
@@ -50,11 +50,11 @@ Ruby version       1.8.7 patchlevel 174
 
     it "summarizes system information" do
       summary = <<-EOS
-Operating System   Ubuntu 8.10
-CPU                Dual Core AMD Opteron(tm) Processor 270
-Processor Count    4
-Memory             254.75 MB
-Ruby version       1.8.7 patchlevel 174
+Operating System:    Ubuntu 8.10
+CPU:                 Dual Core AMD Opteron(tm) Processor 270
+Processor Count:     4
+Memory:              254.75 MB
+Ruby version:        1.8.7 patchlevel 174
       EOS
       BenchPress::SystemInformation.summary.should == summary.strip
     end

@@ -25,7 +25,7 @@ module BenchPress
   end
 
   def report
-    @report ||= Report.new
+    @report ||= Report.new report_name
   end
 
   def name(label = nil)
@@ -63,6 +63,10 @@ module BenchPress
 
   def default_report_name
     module_name || ActiveSupport::Inflector.titleize(File.basename(__FILE__, ".rb"))
+  end
+
+  def report_name
+    name || default_report_name
   end
 end
 

@@ -11,6 +11,22 @@ describe BenchPress::Report do
     end
   end
 
+  describe "#prefix" do
+    it "prepends 4 spaces to the content" do
+      subject.send(:prefix, "Hi There").should == "    Hi There"
+    end
+
+    it "appends 4 spaces after new-line characters" do
+      subject.send(:prefix, "Hi\nThere\nSam").should == "    Hi\n    There\n    Sam"
+    end
+  end
+
+  describe "#line" do
+    it "appends two spaces to the end of the line" do
+      subject.send(:line, "Hi There").should == "Hi There  "
+    end
+  end
+
   describe "#runnable_results" do
     let(:report) do
       r = BenchPress::Report.new
@@ -37,6 +53,65 @@ EOS
     Explicit           0.00035 secs    17% Slower
       EOS
       report.runnable_table.should == table.chop
+    end
+  end
+
+  it "displays the System Information" do
+    BenchPress::SystemInformation.stub(:summary => "Operating System:    Mac OS X 10.6.2 (10C540)\nCPU:                 Intel Core 2 Duo 2.4 GHz\nProcessor Count:     2\nMemory:              4 GB\nRuby version:        1.8.7 patchlevel 174")
+    info = <<-EOS
+System Information
+------------------
+    Operating System:    Mac OS X 10.6.2 (10C540)
+    CPU:                 Intel Core 2 Duo 2.4 GHz
+    Processor Count:     2
+    Memory:              4 GB
+    Ruby version:        1.8.7 patchlevel 174
+    EOS
+    subject.system_information.should == info.chop
+  end
+
+  describe "#cover_page" do
+    let(:report) do
+      report = BenchPress::Report.new("Hash Merge")
+      report.author = "Sandro Turriate"
+      report.summary = "Various methods for appending to a hash"
+      report
+    end
+    let (:date) { Date.new(2009,1,1) }
+
+    before do
+      Date.stub(:today => date)
+    end
+
+    it "displays the report name" do
+      report.cover_page.should include("Hash Merge\n==========")
+    end
+
+    it "displays the report name and author name" do
+      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  ")
+    end
+
+    it "displays the report name, author name, and date" do
+      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.to_s}  ")
+    end
+
+    it "displays the report name, author name, date, and summary" do
+      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.to_s}  \nSummary: Various methods for appending to a hash  ")
+    end
+
+    it "does not display the author when there is no author" do
+      report.stub(:author)
+      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.to_s}  \nSummary: Various methods for appending to a hash  "
+    end
+
+    it "does not display the summary when there is no summary" do
+      report.stub(:summary)
+      report.cover_page.should == "Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.to_s}  "
+    end
+
+    it "only displays the date when author and summary are nil" do
+      report.stub(:summary => nil, :author => nil)
+      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.to_s}  "
     end
   end
 end

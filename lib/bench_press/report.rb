@@ -8,11 +8,26 @@ module BenchPress
       @name = name
     end
 
+    def date
+      Date.today
+    end
+
     def to_s
       [
+        cover_page,
+        system_information,
         runnable_heading,
         runnable_table,
       ].join("\n\n")
+    end
+
+    def cover_page
+      [
+        header(name),
+        announce_author,
+        announce_date,
+        announce_summary
+      ].compact.join("\n")
     end
 
     def runnable_heading
@@ -28,10 +43,37 @@ module BenchPress
       end.join("\n")
     end
 
+    def system_information
+      [
+        header("System Information", '-'),
+        prefix(SystemInformation.summary)
+      ].join("\n")
+    end
+
     protected
+
+    def announce_author
+      line("Author: #{author}") unless author.nil?
+    end
+
+    def announce_date
+      line("Date: #{date}") unless date.nil?
+    end
+
+    def announce_summary
+      line("Summary: #{summary}") unless summary.nil?
+    end
 
     def header(content, decorator = "=")
       [content, decorator * content.size].join("\n")
+    end
+
+    def prefix(content)
+      content.gsub(/^|(\\n)/, "#{$1}    ")
+    end
+
+    def line(content)
+      content << "  "
     end
 
     def repetitions

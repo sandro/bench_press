@@ -5,21 +5,21 @@ module BenchPress
 
     def announce_cpu
       [
-        announce("CPU", cpu),
-        announce("Processor Count", processor_count)
+        announce("CPU:", cpu),
+        announce("Processor Count:", processor_count)
       ].join("\n")
     end
 
     def announce_memory
-      announce "Memory", memory
+      announce "Memory:", memory
     end
 
     def announce_os
-      announce "Operating System", os
+      announce "Operating System:", os
     end
 
     def announce_ruby_version
-      announce "Ruby version", ruby_version
+      announce "Ruby version:", ruby_version
     end
 
     def cpu
@@ -62,7 +62,7 @@ module BenchPress
     protected
 
     def announce(key, value)
-      key.ljust(19) << value
+      key.ljust(21) << value
     end
 
     def facts
