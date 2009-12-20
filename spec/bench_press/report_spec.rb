@@ -3,11 +3,11 @@ require 'spec_helper'
 describe BenchPress::Report do
   describe "#heading" do
     it "creates a markdown h1 heading" do
-      subject.send(:heading, "Hi").should == "Hi\n=="
+      subject.send(:header, "Hi").should == "Hi\n=="
     end
 
     it "creates a markdown h2 heading" do
-      subject.send(:heading, "Hi There", '-').should == "Hi There\n--------"
+      subject.send(:header, "Hi There", '-').should == "Hi There\n--------"
     end
   end
 

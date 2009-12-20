@@ -16,7 +16,7 @@ module BenchPress
     end
 
     def runnable_heading
-      heading(
+      header(
         %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{repetitions} repetitions),
         "-"
       )
@@ -30,7 +30,7 @@ module BenchPress
 
     protected
 
-    def heading(content, decorator = "=")
+    def header(content, decorator = "=")
       [content, decorator * content.size].join("\n")
     end
 
