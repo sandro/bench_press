@@ -1,14 +1,10 @@
-$:.unshift(File.dirname(__FILE__))
-
-begin; require 'rubygems'; rescue LoadError; end
-
-require 'facter'
+require 'active_support/inflector'
 require 'benchmark'
+require 'facter'
 require 'bench_press/runnable'
 require 'bench_press/result'
 require 'bench_press/report'
 require 'bench_press/system_information'
-require 'active_support/inflector'
 
 module BenchPress
 

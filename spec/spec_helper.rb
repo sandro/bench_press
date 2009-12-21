@@ -1,5 +1,4 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+begin; require 'rubygems'; rescue LoadError; end
 require 'bench_press'
 require 'spec'
 require 'spec/autorun'
