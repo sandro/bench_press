@@ -10,9 +10,12 @@ begin
     gem.email = "sandro.turriate@gmail.com"
     gem.homepage = "http://github.com/sandro/bench_press"
     gem.authors = ["Sandro Turriate"]
+    gem.add_dependency "facter", "1.5.7"
+    gem.add_dependency "activesupport", "2.3.5"
+    gem.add_development_dependency "rspec", "1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
-
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
