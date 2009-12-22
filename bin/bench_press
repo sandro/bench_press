@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+options = {}
+
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: bench_press [options] file_to_benchmark.rb"
+
+  opts.on( '-p', '--publish', 'Publish the benchmark to http://rubybenchmark.com' ) do
+    options[:publish] = true
+  end
+end
+
+optparse.parse!
+
+filename = ARGV.first
+abort "You must supply a filename that you want to benchmark." if filename.nil?
+
+file = File.join(Dir.pwd, ARGV.first)
+if File.exists?(file)
+  load file
+else
+  abort "The file #{file} does not exist."
+end
