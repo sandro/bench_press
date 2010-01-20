@@ -18,6 +18,7 @@ abort "You must supply a filename that you want to benchmark." if filename.nil?
 
 file = File.join(Dir.pwd, ARGV.first)
 if File.exists?(file)
+  $0 = file
   load file
 else
   abort "The file #{file} does not exist."
