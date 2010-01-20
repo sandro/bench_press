@@ -7,6 +7,7 @@ require 'bench_press/report'
 require 'bench_press/system_information'
 
 module BenchPress
+  VERSION = '0.1.2'
 
   def self.extended(base)
     base.instance_variable_set(:@module_name, base.name) if base.respond_to?(:name)

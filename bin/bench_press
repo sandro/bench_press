@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'optparse'
+require 'bench_press'
 
 options = {}
 
@@ -9,9 +10,18 @@ optparse = OptionParser.new do |opts|
   opts.on( '-p', '--publish', 'Publish the benchmark to http://rubybenchmark.com' ) do
     options[:publish] = true
   end
+
+  opts.on( '-v', '--version', 'Show the version of bench_press' ) do
+    options[:version] = true
+  end
 end
 
 optparse.parse!
+
+if options[:version]
+  puts BenchPress::VERSION
+  exit
+end
 
 filename = ARGV.first
 abort "You must supply a filename that you want to benchmark." if filename.nil?
