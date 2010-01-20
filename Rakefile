@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "bench_press"
-    gem.summary = %Q{Simple, Sharable benchmarks}
-    gem.description = %Q{Simple, Sharable benchmarks}
+    gem.summary = %Q{Sharable benchmarks}
+    gem.description = %Q{Sharable benchmarks}
     gem.email = "sandro.turriate@gmail.com"
     gem.homepage = "http://github.com/sandro/bench_press"
     gem.authors = ["Sandro Turriate"]

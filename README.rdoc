@@ -1,6 +1,6 @@
-= benchpress
+= Bench Press
 
-Description goes here.
+Sharable benchmarks
 
 == Note on Patches/Pull Requests
  
