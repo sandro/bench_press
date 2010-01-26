@@ -113,29 +113,3 @@ module BenchPress
     end
   end
 end
-
-__END__
-
-HASH MERGE
-===========
-Author: Sandro Turriate  
-Date: 12-12-09  
-Summary: Fastest way to merge or append a hash to another hash  
-
-System Information
-------------------
-    Operating System:    Mac OS X 10.6.2 (10C540)
-    CPU:                 Intel Core 2 Duo 2.4 GHz
-    Processor Count:     2
-    Memory:              4 GB
-    Ruby version:        1.8.7 patchlevel 174
-
-
-"Implicit return" is up to 17% faster over 1000 repetitions
------------------------------------------------------
-    Implicit Return    0.00029 secs    Fastest
-    Explicit           0.00035 secs    17% Slower
-
-50% faster is 25 secs rather than 50, 50x = (50-25)
-35x = (35-29) = 17%
-.00035x = .00006
