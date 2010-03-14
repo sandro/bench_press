@@ -1,4 +1,5 @@
 require 'active_support/inflector'
+require 'date'
 require 'benchmark'
 require 'facter'
 require 'bench_press/runnable'
