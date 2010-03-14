@@ -54,6 +54,7 @@ Gem::Specification.new do |s|
      "spec/bench_press/system_information_spec.rb",
      "spec/bench_press_spec.rb",
      "spec/spec_helper.rb",
+     "examples/array_vs_string_concatenation.rb",
      "examples/compare_rr_to_rspec.rb",
      "examples/existence_of_method.rb",
      "examples/hash_merge.rb",
