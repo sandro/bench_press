@@ -12,7 +12,7 @@ begin
     gem.authors = ["Sandro Turriate"]
     gem.add_dependency "facter", "1.5.7"
     gem.add_dependency "activesupport", "2.3.5"
-    gem.add_development_dependency "rspec", "1.2.9"
+    gem.add_development_dependency "rspec", "1.3.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
