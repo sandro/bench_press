@@ -23,6 +23,7 @@ describe BenchPress do
         end
         extend BenchPress
       end
+      mod.stub(:calling_script => "bench_press.rb")
       mod.send(:default_report_name).should == "Bench Press"
     end
   end

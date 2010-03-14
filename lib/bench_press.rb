@@ -60,11 +60,15 @@ module BenchPress
   protected
 
   def default_report_name
-    module_name || ActiveSupport::Inflector.titleize(File.basename($0, ".rb"))
+    module_name || ActiveSupport::Inflector.titleize(File.basename(calling_script, ".rb"))
   end
 
   def report_name
     name || default_report_name
+  end
+
+  def calling_script
+    $0
   end
 end
 
