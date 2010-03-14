@@ -20,7 +20,9 @@ module BenchPress
 
     def run
       @run_time = Benchmark.realtime do
-        self.class.repetitions.times &code_block
+        self.class.repetitions.times do |i|
+          code_block.call(i)
+        end
       end
     end
   end
