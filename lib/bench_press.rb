@@ -12,7 +12,7 @@ module BenchPress
   VERSION = '0.1.3'
 
   def self.extended(base)
-    base.instance_variable_set(:@module_name, base.name) if base.respond_to?(:name)
+    base.instance_variable_set(:@module_name, base.to_s) if base.is_a?(Module)
   end
 
   def module_name
@@ -27,14 +27,8 @@ module BenchPress
     @report ||= Report.new report_name
   end
 
-  def name(label = nil)
-    if label.nil?
-      begin
-        Module.instance_method(:name).bind(self).call
-      rescue TypeError; end
-    else
-      report.name = label
-    end
+  def name(new_report_name)
+    report.name = new_report_name
   end
 
   def summary(summary)
@@ -61,11 +55,11 @@ module BenchPress
   protected
 
   def default_report_name
-    module_name || ActiveSupport::Inflector.titleize(File.basename(calling_script, ".rb"))
+    module_name || File.basename(calling_script, ".rb")
   end
 
   def report_name
-    name || default_report_name
+    ActiveSupport::Inflector.titleize default_report_name
   end
 
   def calling_script
