@@ -3,6 +3,9 @@ require 'bench_press'
 
 extend BenchPress
 
+author 'defunkt'
+date '2009-08-15'
+
 def implicit
   1
 end
