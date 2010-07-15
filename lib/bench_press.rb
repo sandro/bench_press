@@ -12,12 +12,14 @@ module BenchPress
   VERSION = '0.1.3'
 
   class << self
+    attr_reader :current
 
     attr_accessor :run_at_exit
     alias run_at_exit? run_at_exit
 
     def extended(base)
       base.instance_variable_set(:@module_name, base.to_s) if base.is_a?(Module)
+      @current = base
     end
   end
 

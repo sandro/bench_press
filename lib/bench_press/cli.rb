@@ -36,7 +36,7 @@ module BenchPress
       if options[:version]
         exit_with_version
       elsif file_exists?
-        benchpress_file
+        perform_bench_press
       else
         abort "Could not proceed, please supply the filename you wish to benchmark"
       end
@@ -44,14 +44,20 @@ module BenchPress
 
     protected
 
-    def benchpress_file
+    def perform_bench_press
+      measurable.bench_press
       if options[:publish]
         publish
       else
-        IO.popen %(ruby #{file_path}) do |process|
-          at_exit {Process.kill process.pid rescue Errno::ESRCH}
-          puts process.read
-        end
+        puts measurable.report
+      end
+    end
+
+    def measurable
+      @measurable ||= begin
+        load file_path
+        BenchPress.run_at_exit = false
+        BenchPress.current
       end
     end
 
