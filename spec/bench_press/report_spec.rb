@@ -27,6 +27,18 @@ describe BenchPress::Report do
     end
   end
 
+  describe "#date" do
+    it "returns today's date" do
+      subject.date.should == Date.today
+    end
+
+    it "returns the custom date" do
+      custom_date = Time.parse('2010-01-01')
+      subject.date = custom_date
+      subject.date.should == custom_date
+    end
+  end
+
   describe "#runnable_results" do
     let(:report) do
       r = BenchPress::Report.new

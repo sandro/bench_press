@@ -2,14 +2,14 @@ module BenchPress
   class Report
     SPACING = 4
 
-    attr_accessor :runnables, :name, :summary, :author
+    attr_accessor :runnables, :name, :summary, :author, :date
 
     def initialize(name = "")
       @name = name
     end
 
     def date
-      Date.today
+      @date ||= Date.today
     end
 
     def to_s

@@ -27,6 +27,10 @@ module BenchPress
     @report ||= Report.new report_name
   end
 
+  def date(date)
+    report.date = Time.parse(date)
+  end
+
   def name(new_report_name=nil)
     if new_report_name
       report.name = new_report_name

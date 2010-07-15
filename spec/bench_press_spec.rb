@@ -48,4 +48,17 @@ describe BenchPress do
       end
     end
   end
+
+  describe "#date" do
+    it "sets the report date to the passed in date" do
+      TestModule.date "2010/01/15"
+      TestModule.report.date.should == Time.parse("2010-01-15")
+    end
+
+    it "raises a parse error for bad dates" do
+      expect do
+        TestModule.date 1234
+      end.to raise_exception(TypeError)
+    end
+  end
 end
