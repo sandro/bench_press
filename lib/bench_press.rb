@@ -11,6 +11,8 @@ require 'bench_press/system_information'
 module BenchPress
   VERSION = '0.1.3'
 
+  autoload :RubyBenchmark, 'bench_press/ruby_benchmark'
+
   class << self
     attr_reader :current
 

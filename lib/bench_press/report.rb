@@ -50,6 +50,23 @@ module BenchPress
       ].join("\n")
     end
 
+    def to_hash
+      {
+        :name => name,
+        :author => author,
+        :summary => summary,
+        :run_on => date,
+        :repetitions => repetitions,
+        :os => SystemInformation.os,
+        :cpu => SystemInformation.cpu,
+        :processor_count => SystemInformation.processor_count,
+        :memory => SystemInformation.memory,
+        :ruby_version => SystemInformation.ruby_version,
+        :report => to_s,
+        :runnables => runnables.map {|r| r.to_hash}
+      }
+    end
+
     protected
 
     def announce_author

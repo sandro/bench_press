@@ -38,5 +38,13 @@ module BenchPress
       end
     end
 
+    def to_hash
+      {
+        :name => name,
+        :run_time => run_time,
+        :summary => summary,
+        :fastest => fastest
+      }
+    end
   end
 end
