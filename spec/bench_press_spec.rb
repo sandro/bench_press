@@ -8,7 +8,7 @@ describe BenchPress do
   describe "#default_report_name" do
     it "is the name of the enclosing module" do
       mod = Module.new do
-        def self.name
+        def self.to_s
           "ModuleName"
         end
         extend BenchPress
@@ -18,13 +18,11 @@ describe BenchPress do
 
     it "is the name of the ruby script when the extending class has no name" do
       mod = Module.new do
-        class << self
-          undef name
-        end
+        def self.to_s; nil; end
         extend BenchPress
       end
       mod.stub(:calling_script => "bench_press.rb")
-      mod.send(:default_report_name).should == "Bench Press"
+      mod.send(:default_report_name).should == "bench_press"
     end
   end
 
@@ -41,9 +39,12 @@ describe BenchPress do
         TestModule.name.should == "TestModule"
       end
 
-      it "rescues TypeError and returns nil" do
-        Module.stub(:instance_method).and_raise(TypeError)
-        TestModule.name.should be_nil
+      it "handles nil name" do
+        mod = Module.new do
+          def self.name; nil; end
+          extend BenchPress
+        end
+        mod.name.should be_nil
       end
     end
   end

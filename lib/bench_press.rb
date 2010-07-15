@@ -27,8 +27,12 @@ module BenchPress
     @report ||= Report.new report_name
   end
 
-  def name(new_report_name)
-    report.name = new_report_name
+  def name(new_report_name=nil)
+    if new_report_name
+      report.name = new_report_name
+    else
+      super()
+    end
   end
 
   def summary(summary)
