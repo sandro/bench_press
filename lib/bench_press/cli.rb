@@ -10,6 +10,10 @@ module BenchPress
       @filename = argv.shift
     end
 
+    def email
+      options[:email] || git_email
+    end
+
     def file_path
       @file_path ||= File.join(Dir.pwd, filename)
     end
@@ -18,12 +22,20 @@ module BenchPress
       filename && File.exists?(file_path)
     end
 
+    def git_email
+      @git_email ||= %x(git config --global --get user.email).strip
+    end
+
     def optparse
       @optparse ||= OptionParser.new do |opts|
         opts.banner = "Usage: bench_press [options] file_to_benchmark.rb"
 
         opts.on( '-p', '--publish', 'Publish the benchmark to http://rubybenchmark.com' ) do
           options[:publish] = true
+        end
+
+        opts.on('--email EMAIL', String, "Author email, defaults to #{git_email}") do |email|
+          options[:email] = email
         end
 
         opts.on( '-v', '--version', 'Show the version of bench_press' ) do
@@ -67,7 +79,10 @@ module BenchPress
     end
 
     def publish
-      raise 'publish'
+      if email && email.any?
+      else
+        abort "Email missing. Use bench_press --publish --email me@example.com file.rb"
+      end
     end
   end
 end
