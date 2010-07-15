@@ -11,9 +11,17 @@ require 'bench_press/system_information'
 module BenchPress
   VERSION = '0.1.3'
 
-  def self.extended(base)
-    base.instance_variable_set(:@module_name, base.to_s) if base.is_a?(Module)
+  class << self
+
+    attr_accessor :run_at_exit
+    alias run_at_exit? run_at_exit
+
+    def extended(base)
+      base.instance_variable_set(:@module_name, base.to_s) if base.is_a?(Module)
+    end
   end
+
+  @run_at_exit = true
 
   def module_name
     @module_name
@@ -57,7 +65,7 @@ module BenchPress
 
   def bench_press
     report.runnables = runnables
-    puts report
+    report
   end
 
   protected
@@ -76,5 +84,5 @@ module BenchPress
 end
 
 at_exit do
-  bench_press if respond_to?(:bench_press)
+  puts(bench_press) if respond_to?(:bench_press) && BenchPress.run_at_exit?
 end
