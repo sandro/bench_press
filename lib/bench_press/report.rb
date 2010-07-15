@@ -39,7 +39,7 @@ module BenchPress
 
     def runnable_table
       result.runnables.map do |r|
-        row(run_name(r.name), run_time(r.run_time), run_summary(r))
+        row(run_name(r.name), run_time(r.run_time), r.summary)
       end.join("\n")
     end
 
@@ -94,14 +94,6 @@ module BenchPress
 
     def run_name(content)
       content.to_s.ljust(result.longest_name.size + SPACING)
-    end
-
-    def run_summary(r)
-      if r == result.fastest
-        "Fastest"
-      else
-        "#{r.percent_slower}% Slower"
-      end
     end
 
     def run_time(secs)
