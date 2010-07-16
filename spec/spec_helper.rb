@@ -4,6 +4,7 @@ require 'spec'
 require 'spec/autorun'
 require 'ephemeral_response'
 
+Dir.glob("spec/support/*.rb") {|f| require f}
 
 Spec::Runner.configure do |config|
   config.before(:suite) do

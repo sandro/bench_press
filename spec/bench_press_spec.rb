@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-module TestModule
-  extend BenchPress
-end
-
 describe BenchPress do
   describe "#default_report_name" do
     it "is the name of the enclosing module" do
@@ -28,15 +24,15 @@ describe BenchPress do
 
   describe "#name" do
     it "sets the name of the report" do
-      TestModule.module_eval do
+      Measurable.module_eval do
         name "Foo versus Bar"
       end
-      TestModule.report.name.should == "Foo versus Bar"
+      Measurable.report.name.should == "Foo versus Bar"
     end
 
     context "when no argument is provided" do
       it "returns the module name when no argument is provided" do
-        TestModule.name.should == "TestModule"
+        Measurable.name.should == "Measurable"
       end
 
       it "handles nil name" do
@@ -51,13 +47,13 @@ describe BenchPress do
 
   describe "#date" do
     it "sets the report date to the passed in date" do
-      TestModule.date "2010/01/15"
-      TestModule.report.date.should == Time.parse("2010-01-15")
+      Measurable.date "2010/01/15"
+      Measurable.report.date.should == Time.parse("2010-01-15")
     end
 
     it "raises a parse error for bad dates" do
       expect do
-        TestModule.date 1234
+        Measurable.date 1234
       end.to raise_exception(TypeError)
     end
   end
