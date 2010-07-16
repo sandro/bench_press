@@ -6,3 +6,4 @@ pkg
 /mockups
 /TODO
 /.bundle
+/spec/fixtures/ephemeral_response

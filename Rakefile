@@ -14,6 +14,7 @@ begin
     gem.add_dependency "activesupport", ">=2.3.5"
     gem.add_dependency "httparty", ">=0.6.1"
     gem.add_development_dependency "rspec", "1.3.0"
+    gem.add_development_dependency "ephemeral_response", ">=0.3.1"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
