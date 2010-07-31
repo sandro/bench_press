@@ -30,11 +30,12 @@ module BenchPress
       ].compact.join("\n")
     end
 
+    def heading
+      %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{repetitions} repetitions)
+    end
+
     def runnable_heading
-      header(
-        %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{repetitions} repetitions),
-        "-"
-      )
+      header(heading, "-")
     end
 
     def runnable_table
@@ -53,8 +54,9 @@ module BenchPress
     def to_hash
       {
         :name => name,
-        :author => author,
+        :heading => heading,
         :summary => summary,
+        :author => author,
         :run_on => date,
         :repetitions => repetitions,
         :os => SystemInformation.os,
