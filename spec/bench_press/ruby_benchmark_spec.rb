@@ -29,8 +29,12 @@ describe BenchPress::RubyBenchmark do
         measurable.report.stub(:to_hash => invalid_hash)
       end
 
-      it "returns nil" do
+      it "has nil report url" do
         subject.report_url.should be_nil
+      end
+
+      it "contains error messages" do
+        subject.response.body.should include("can't be blank")
       end
     end
   end

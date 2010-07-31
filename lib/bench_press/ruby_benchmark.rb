@@ -9,7 +9,7 @@ module BenchPress
       report = measurable.report.to_hash
       report[:results_attributes] = report.delete(:runnables)
       report.merge! :source => File.read(file_path)
-      new post("/reports", :query => {:report => report})
+      new post("/reports", :body => {:report => report})
     end
 
     attr_reader :response
