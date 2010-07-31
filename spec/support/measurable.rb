@@ -8,4 +8,8 @@ module Measurable
   measure "nil" do
     nil
   end
+
+  measure '""' do
+    ""
+  end
 end
