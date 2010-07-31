@@ -104,26 +104,26 @@ System Information
     end
 
     it "displays the report name, author name, and date" do
-      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.to_s}  ")
+      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  ")
     end
 
     it "displays the report name, author name, date, and summary" do
-      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.to_s}  \nSummary: Various methods for appending to a hash  ")
+      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  \nSummary: Various methods for appending to a hash  ")
     end
 
     it "does not display the author when there is no author" do
       report.stub(:author)
-      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.to_s}  \nSummary: Various methods for appending to a hash  "
+      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.strftime("%B %d, %Y")}  \nSummary: Various methods for appending to a hash  "
     end
 
     it "does not display the summary when there is no summary" do
       report.stub(:summary)
-      report.cover_page.should == "Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.to_s}  "
+      report.cover_page.should == "Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  "
     end
 
     it "only displays the date when author and summary are nil" do
       report.stub(:summary => nil, :author => nil)
-      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.to_s}  "
+      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.strftime("%B %d, %Y")}  "
     end
   end
 end

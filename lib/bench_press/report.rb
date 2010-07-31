@@ -74,7 +74,7 @@ module BenchPress
     end
 
     def announce_date
-      line("Date: #{date}") unless date.nil?
+      line("Date: #{date.strftime("%B %d, %Y")}") unless date.nil?
     end
 
     def announce_summary
