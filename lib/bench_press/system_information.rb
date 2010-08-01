@@ -19,7 +19,7 @@ module BenchPress
     end
 
     def announce_ruby_version
-      announce "Ruby version:", ruby_version
+      ruby_version
     end
 
     def cpu
@@ -47,7 +47,7 @@ module BenchPress
     end
 
     def ruby_version
-      "#{RUBY_VERSION} patchlevel #{RUBY_PATCHLEVEL}"
+      RUBY_DESCRIPTION
     end
 
     def summary

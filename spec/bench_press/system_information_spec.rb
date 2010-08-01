@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BenchPress::SystemInformation do
   before do
-    BenchPress::SystemInformation.stub(:ruby_version => "1.8.7 patchlevel 174")
+    BenchPress::SystemInformation.stub(:ruby_version => "ruby 1.8.7 (2009-12-24 patchlevel 248) [i686-darwin10.2.0], MBARI 0x6770, Ruby Enterprise Edition 2010.01")
   end
 
   context "for Mac OS X" do
@@ -25,7 +25,7 @@ Operating System:    Mac OS X 10.6.2 (10C540)
 CPU:                 Intel Core 2 Duo 2.4 GHz
 Processor Count:     2
 Memory:              4 GB
-Ruby version:        1.8.7 patchlevel 174
+ruby 1.8.7 (2009-12-24 patchlevel 248) [i686-darwin10.2.0], MBARI 0x6770, Ruby Enterprise Edition 2010.01
       EOS
       BenchPress::SystemInformation.summary.should == summary.strip
     end
@@ -54,7 +54,7 @@ Operating System:    Ubuntu 8.10
 CPU:                 Dual Core AMD Opteron(tm) Processor 270
 Processor Count:     4
 Memory:              254.75 MB
-Ruby version:        1.8.7 patchlevel 174
+ruby 1.8.7 (2009-12-24 patchlevel 248) [i686-darwin10.2.0], MBARI 0x6770, Ruby Enterprise Edition 2010.01
       EOS
       BenchPress::SystemInformation.summary.should == summary.strip
     end
