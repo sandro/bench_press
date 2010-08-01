@@ -39,6 +39,7 @@ module BenchPress
         :memory => SystemInformation.memory,
         :ruby_version => SystemInformation.ruby_version,
         :report => to_s,
+        :crypted_identifier => SystemInformation.crypted_identifier,
         :runnables => runnables.map {|r| r.to_hash}
       }
     end
