@@ -23,11 +23,19 @@ module BenchPress
     end
 
     def run
-      @run_time = Benchmark.realtime do
-        self.class.repetitions.times do |i|
-          code_block.call(i)
+      r,w = IO.pipe
+      fork do
+        time = Benchmark.realtime do
+          self.class.repetitions.times do |i|
+            code_block.call(i)
+          end
         end
+        w.write time
+        w.close_write
       end
+      Process.waitall
+      w.close_write
+      @run_time = r.read.to_f
     end
 
     def summary
