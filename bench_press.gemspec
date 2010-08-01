@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bench_press}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sandro Turriate"]
-  s.date = %q{2010-07-31}
+  s.date = %q{2010-08-01}
   s.default_executable = %q{bench_press}
   s.description = %q{Sharable benchmarks}
   s.email = %q{sandro.turriate@gmail.com}
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
      "examples/hash_merge.rb",
      "examples/implicit_versus_explicit_return.rb",
      "examples/regexp_matching.rb",
+     "examples/string_generation.rb",
      "lib/bench_press.rb",
      "lib/bench_press/cli.rb",
      "lib/bench_press/report.rb",
@@ -71,7 +72,8 @@ Gem::Specification.new do |s|
      "examples/existence_of_method.rb",
      "examples/hash_merge.rb",
      "examples/implicit_versus_explicit_return.rb",
-     "examples/regexp_matching.rb"
+     "examples/regexp_matching.rb",
+     "examples/string_generation.rb"
   ]
 
   if s.respond_to? :specification_version then
