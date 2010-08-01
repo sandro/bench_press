@@ -32,6 +32,7 @@ module BenchPress
         end
         w.write time
         w.close_write
+        exit!
       end
       Process.waitall
       w.close_write
