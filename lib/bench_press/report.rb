@@ -2,7 +2,7 @@ module BenchPress
   class Report
     SPACING = 4
 
-    attr_accessor :runnables, :name, :summary, :author, :date
+    attr_accessor :runnables, :name, :summary, :author, :date, :email
 
     def initialize(name = "")
       @name = name
@@ -56,6 +56,7 @@ module BenchPress
         :name => name,
         :heading => heading,
         :summary => summary,
+        :email => email,
         :author => author,
         :run_on => date,
         :repetitions => repetitions,

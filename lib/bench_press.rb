@@ -59,6 +59,10 @@ module BenchPress
     report.author = author
   end
 
+  def email(email)
+    report.email = email
+  end
+
   def reps(times)
     Runnable.repetitions = times
   end
