@@ -56,7 +56,7 @@ describe BenchPress::Report do
 -----------------------------------------------------------
 EOS
 
-      report.runnable_heading.should == heading.strip
+      report.send(:runnable_heading).should == heading.strip
     end
 
     it "displays the table of results" do
@@ -64,7 +64,7 @@ EOS
     Implicit return    0.00029 secs    Fastest
     Explicit           0.00035 secs    17% Slower
       EOS
-      report.runnable_table.should == table.chop
+      report.send(:runnable_table).should == table.chop
     end
   end
 
@@ -79,7 +79,7 @@ System Information
     Memory:              4 GB
     Ruby version:        1.8.7 patchlevel 174
     EOS
-    subject.system_information.should == info.chop
+    subject.send(:system_information).should == info.chop
   end
 
   describe "#cover_page" do
@@ -96,34 +96,34 @@ System Information
     end
 
     it "displays the report name" do
-      report.cover_page.should include("Hash Merge\n==========")
+      report.send(:cover_page).should include("Hash Merge\n==========")
     end
 
     it "displays the report name and author name" do
-      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  ")
+      report.send(:cover_page).should include("Hash Merge\n==========\nAuthor: Sandro Turriate  ")
     end
 
     it "displays the report name, author name, and date" do
-      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  ")
+      report.send(:cover_page).should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  ")
     end
 
     it "displays the report name, author name, date, and summary" do
-      report.cover_page.should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  \nSummary: Various methods for appending to a hash  ")
+      report.send(:cover_page).should include("Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  \nSummary: Various methods for appending to a hash  ")
     end
 
     it "does not display the author when there is no author" do
       report.stub(:author)
-      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.strftime("%B %d, %Y")}  \nSummary: Various methods for appending to a hash  "
+      report.send(:cover_page).should == "Hash Merge\n==========\nDate: #{date.strftime("%B %d, %Y")}  \nSummary: Various methods for appending to a hash  "
     end
 
     it "does not display the summary when there is no summary" do
       report.stub(:summary)
-      report.cover_page.should == "Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  "
+      report.send(:cover_page).should == "Hash Merge\n==========\nAuthor: Sandro Turriate  \nDate: #{date.strftime("%B %d, %Y")}  "
     end
 
     it "only displays the date when author and summary are nil" do
       report.stub(:summary => nil, :author => nil)
-      report.cover_page.should == "Hash Merge\n==========\nDate: #{date.strftime("%B %d, %Y")}  "
+      report.send(:cover_page).should == "Hash Merge\n==========\nDate: #{date.strftime("%B %d, %Y")}  "
     end
   end
 end

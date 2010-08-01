@@ -13,6 +13,7 @@ module BenchPress
     end
 
     def to_s
+      result
       [
         cover_page,
         system_information,
@@ -20,6 +21,29 @@ module BenchPress
         runnable_table,
       ].join("\n\n")
     end
+
+
+    def to_hash
+      result
+      {
+        :name => name,
+        :heading => heading,
+        :summary => summary,
+        :email => email,
+        :author => author,
+        :run_on => date,
+        :repetitions => repetitions,
+        :os => SystemInformation.os,
+        :cpu => SystemInformation.cpu,
+        :processor_count => SystemInformation.processor_count,
+        :memory => SystemInformation.memory,
+        :ruby_version => SystemInformation.ruby_version,
+        :report => to_s,
+        :runnables => runnables.map {|r| r.to_hash}
+      }
+    end
+
+    protected
 
     def cover_page
       [
@@ -50,27 +74,6 @@ module BenchPress
         prefix(SystemInformation.summary)
       ].join("\n")
     end
-
-    def to_hash
-      {
-        :name => name,
-        :heading => heading,
-        :summary => summary,
-        :email => email,
-        :author => author,
-        :run_on => date,
-        :repetitions => repetitions,
-        :os => SystemInformation.os,
-        :cpu => SystemInformation.cpu,
-        :processor_count => SystemInformation.processor_count,
-        :memory => SystemInformation.memory,
-        :ruby_version => SystemInformation.ruby_version,
-        :report => to_s,
-        :runnables => runnables.map {|r| r.to_hash}
-      }
-    end
-
-    protected
 
     def announce_author
       line("Author: #{author}") unless author.nil?
