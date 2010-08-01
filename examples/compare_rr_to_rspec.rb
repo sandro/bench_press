@@ -21,4 +21,4 @@ module CompareRRToRspec
   end
 end
 
-CompareRRToRspec.bench_press
+puts CompareRRToRspec.bench_press

@@ -25,4 +25,4 @@ module ExistenceOfMethod
   end
 end
 
-ExistenceOfMethod.bench_press
+puts ExistenceOfMethod.bench_press
