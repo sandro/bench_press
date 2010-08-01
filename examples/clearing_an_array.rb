@@ -36,7 +36,7 @@ end
 
 measure "Array#delete_if" do
   a = ARRAY.dup
-  a.delete_if {|o| o}
+  a.delete_if {true}
 end
 
 measure "Array#drop" do
