@@ -67,7 +67,7 @@ module BenchPress
 
     def measurable
       @measurable ||= begin
-        $0 = file_path
+        $0 = File.basename(file_path)
         load file_path
         BenchPress.run_at_exit = false
         BenchPress.current
