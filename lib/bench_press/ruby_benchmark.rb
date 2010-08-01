@@ -18,14 +18,8 @@ module BenchPress
       @response = response
     end
 
-    def report_url
-      response.body if successful?
-    end
-
-    protected
-
-    def successful?
-      Net::HTTPSuccess === response.response
+    def to_s
+      response.body
     end
   end
 end

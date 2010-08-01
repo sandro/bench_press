@@ -7,7 +7,7 @@ describe BenchPress::RubyBenchmark do
     BenchPress::RubyBenchmark.base_uri "http://localhost:3000"
   end
 
-  describe "#report_url" do
+  describe "#to_s" do
     subject do
       BenchPress::RubyBenchmark.publish measurable, measurable.path
     end
@@ -19,7 +19,7 @@ describe BenchPress::RubyBenchmark do
       end
 
       it "returns the response body" do
-        subject.report_url.should =~ %r(http://localhost:3000/reports/\d+)
+        subject.to_s.should =~ %r(http://localhost:3000/reports/\d+)
       end
     end
 
@@ -29,12 +29,8 @@ describe BenchPress::RubyBenchmark do
         measurable.report.stub(:to_hash => invalid_hash)
       end
 
-      it "has nil report url" do
-        subject.report_url.should be_nil
-      end
-
       it "contains error messages" do
-        subject.response.body.should include("can't be blank")
+        subject.to_s.should include("can't be blank")
       end
     end
   end

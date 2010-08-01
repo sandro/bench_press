@@ -82,7 +82,8 @@ module BenchPress
     def publish
       if email && email.any?
         measurable.email email
-        RubyBenchmark.publish(measurable, file_path)
+        puts measurable.report; puts
+        puts RubyBenchmark.publish(measurable, file_path)
       else
         abort "Email missing. Use bench_press --publish --email me@example.com file.rb"
       end
