@@ -56,7 +56,7 @@ module BenchPress
     end
 
     def heading
-      %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{repetitions} repetitions)
+      %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{formatted_number repetitions} repetitions)
     end
 
     def runnable_heading
@@ -103,7 +103,7 @@ module BenchPress
     def repetitions
       Runnable.repetitions
     end
-
+    
     def row(*columns)
       row = spacer
       columns.each do |column|
@@ -114,6 +114,10 @@ module BenchPress
 
     def spacer
       ' ' * SPACING
+    end
+    
+    def formatted_number(number, delimiter = ',')
+      number.to_s.gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
     end
 
     def run_name(content)

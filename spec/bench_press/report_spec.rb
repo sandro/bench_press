@@ -38,7 +38,13 @@ describe BenchPress::Report do
       subject.date.should == custom_date
     end
   end
-
+  
+  describe  "#formatted_number" do
+    it "comma-separates a number" do
+      subject.send(:formatted_number, 1000000).should == "1,000,000"
+    end
+  end
+  
   describe "#runnable_results" do
     let(:report) do
       r = BenchPress::Report.new
@@ -52,13 +58,13 @@ describe BenchPress::Report do
 
     it "displays a heading" do
       heading = <<-EOS
-"Implicit return" is up to 17% faster over 1000 repetitions
------------------------------------------------------------
+"Implicit return" is up to 17% faster over 1,000 repetitions
+------------------------------------------------------------
 EOS
 
       report.send(:runnable_heading).should == heading.strip
     end
-
+    
     it "displays the table of results" do
       table = <<-EOS
     Implicit return    0.00029 secs    Fastest
