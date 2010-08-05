@@ -30,6 +30,10 @@ module BenchPress
       @optparse ||= OptionParser.new do |opts|
         opts.banner = "Usage: bench_press [options] file_to_benchmark.rb"
 
+        opts.on( '-n', '--new', 'Create a new benchmark' ) do
+          options[:new] = true
+        end
+
         opts.on( '-p', '--publish', 'Publish the benchmark to http://rubybenchmark.com' ) do
           options[:publish] = true
         end
@@ -49,6 +53,8 @@ module BenchPress
         exit_with_version
       elsif file_exists?
         perform_bench_press
+      elsif options[:new]
+        new_bench_press
       else
         abort "Could not proceed, please supply the filename you wish to benchmark"
       end
@@ -88,5 +94,41 @@ module BenchPress
         abort "Email missing. Use bench_press --publish --email me@example.com file.rb"
       end
     end
+
+    def new_bench_press
+      if filename && File.exists?(file_path_with_rb)
+        abort "A file named #{filename} already exists"
+      else
+        File.open(file_path_with_rb, 'w') { |f| f.write(template) } unless file_exists?
+      end
+    end
+
+    def file_path_with_rb
+      file_path + '.rb'
+    end
+
+    def template
+      <<-TEMPLATE
+
+require 'bench_press'
+
+extend BenchPress
+
+name 'gem1 vs. gem2'
+author 'YOUR NAME'
+date '#{Time.now.strftime('%Y-%m-%d')}'
+summary "
+  Describe what you're benchmarking
+"
+
+reps 10_000 #number of repetitions
+
+measure "Class#method" do
+  # code to be benchmarked
+end
+
+      TEMPLATE
+    end
+
   end
 end

@@ -2,6 +2,8 @@
 
 Sharable benchmarks
 
+bench_press --help for options
+
 == Running the binary/examples locally
 I use rubygems but this library is $LOAD_PATH friendly which means we need to
 set up our own load path when playing locally.
