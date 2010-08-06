@@ -38,7 +38,7 @@ module BenchPress
           options[:publish] = true
         end
 
-        opts.on('--email EMAIL', String, "Author email, defaults to #{git_email}") do |email|
+        opts.on('--email EMAIL', String, "Author email used when publishing, defaults to #{git_email}") do |email|
           options[:email] = email
         end
 
