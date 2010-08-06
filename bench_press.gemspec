@@ -5,17 +5,18 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bench_press}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sandro Turriate"]
-  s.date = %q{2010-08-01}
+  s.date = %q{2010-08-05}
   s.default_executable = %q{bench_press}
   s.description = %q{Sharable benchmarks}
   s.email = %q{sandro.turriate@gmail.com}
   s.executables = ["bench_press"]
   s.extra_rdoc_files = [
-    "README.rdoc",
+    "README.markdown",
+     "README.rdoc",
      "TODO"
   ]
   s.files = [
@@ -25,11 +26,13 @@ Gem::Specification.new do |s|
      ".rvmrc",
      "Gemfile",
      "MIT-LICENSE",
+     "README.markdown",
      "README.rdoc",
      "Rakefile",
      "VERSION",
      "bench_press.gemspec",
      "bin/bench_press",
+     "examples/clearing_an_array.rb",
      "examples/compare_rr_to_rspec.rb",
      "examples/existence_of_method.rb",
      "examples/hash_merge.rb",
@@ -67,9 +70,10 @@ Gem::Specification.new do |s|
      "spec/bench_press_spec.rb",
      "spec/spec_helper.rb",
      "spec/support/measurable.rb",
-     "examples/array_vs_string_concatenation.rb",
+     "examples/clearing_an_array.rb",
      "examples/compare_rr_to_rspec.rb",
      "examples/existence_of_method.rb",
+     "examples/foo.rb",
      "examples/hash_merge.rb",
      "examples/implicit_versus_explicit_return.rb",
      "examples/regexp_matching.rb",
