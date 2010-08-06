@@ -1,4 +1,3 @@
-require 'active_support/inflector'
 require 'date'
 require 'benchmark'
 require 'facter'
@@ -26,6 +25,12 @@ module BenchPress
   end
 
   @run_at_exit = true
+
+  def self.titleize(string)
+    string.split(/[\W_]+/).map do |word|
+      word.capitalize
+    end.join(" ")
+  end
 
   def module_name
     @module_name
@@ -83,7 +88,7 @@ module BenchPress
   end
 
   def report_name
-    ActiveSupport::Inflector.titleize default_report_name
+    BenchPress.titleize default_report_name
   end
 
   def calling_script

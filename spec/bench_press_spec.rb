@@ -57,4 +57,34 @@ describe BenchPress do
       end.to raise_exception(TypeError)
     end
   end
+
+  describe "#titleize" do
+    subject do
+      BenchPress
+    end
+
+    it "test" do
+      subject.titleize("test").should == "Test"
+    end
+
+    it "regexp_matching" do
+      subject.titleize("regexp_matching").should == "Regexp Matching"
+    end
+
+    it "regexp-matching" do
+      subject.titleize("regexp-matching").should == "Regexp Matching"
+    end
+
+    it "multiple non word characters in a row" do
+      subject.titleize("regexp__matching").should == "Regexp Matching"
+    end
+
+    it "handles multiple non word characters" do
+      subject.titleize("one_two_three-four:five").should == "One Two Three Four Five"
+    end
+
+    it "lowercases everything but the first character" do
+      subject.titleize("ONE_TWO").should == "One Two"
+    end
+  end
 end
