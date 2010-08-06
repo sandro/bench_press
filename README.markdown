@@ -11,6 +11,12 @@ Additionally, benchmarks can be published to the
 [Ruby Benchmark](http://rubybenchmark.com) via
 `bench_press --publish benchmark.rb` command.
 
+### Creating a new benchmark
+
+Use the `--new` flag to get started
+    $ bench_press --new benchmark
+    $ vi benchmark.rb
+
 ## Example
 
     # foo.rb
