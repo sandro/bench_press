@@ -9,7 +9,7 @@ require 'bench_press/report'
 require 'bench_press/system_information'
 
 module BenchPress
-  VERSION = '0.2.1'
+  VERSION = '0.3.0'
 
   autoload :RubyBenchmark, 'bench_press/ruby_benchmark'
 
