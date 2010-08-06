@@ -25,10 +25,9 @@ module BenchPress
     def run
       r,w = IO.pipe
       fork do
+        run_it
         time = Benchmark.realtime do
-          self.class.repetitions.times do |i|
-            code_block.call(i)
-          end
+          run_it
         end
         w.write time
         w.close_write
@@ -54,6 +53,14 @@ module BenchPress
         :summary => summary,
         :fastest => fastest
       }
+    end
+
+    protected
+
+    def run_it
+      self.class.repetitions.times do |i|
+        code_block.call(i)
+      end
     end
   end
 end
