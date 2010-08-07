@@ -1,4 +1,5 @@
 require 'date'
+require 'time'
 require 'benchmark'
 require 'facter'
 require 'bench_press/cli'
@@ -97,5 +98,7 @@ module BenchPress
 end
 
 at_exit do
-  puts(bench_press) if respond_to?(:bench_press) && BenchPress.run_at_exit?
+  if $!.nil? && respond_to?(:bench_press) && BenchPress.run_at_exit?
+    puts bench_press
+  end
 end
