@@ -103,7 +103,7 @@ module BenchPress
     def repetitions
       Runnable.repetitions
     end
-    
+
     def row(*columns)
       row = spacer
       columns.each do |column|
@@ -115,7 +115,7 @@ module BenchPress
     def spacer
       ' ' * SPACING
     end
-    
+
     def formatted_number(number, delimiter = ',')
       number.to_s.gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
     end
