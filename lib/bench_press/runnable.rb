@@ -25,6 +25,7 @@ module BenchPress
     def run
       r,w = IO.pipe
       fork do
+        GC.disable
         run_it
         time = Benchmark.realtime do
           run_it
