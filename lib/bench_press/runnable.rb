@@ -1,7 +1,7 @@
 module BenchPress
   class Runnable
     attr_reader :name, :code_block, :run_time
-    attr_accessor :percent_slower, :fastest
+    attr_accessor :percent_slower, :percent_faster, :fastest, :slowest
 
     class << self
       def repetitions
@@ -22,6 +22,10 @@ module BenchPress
       fastest == true
     end
 
+    def slowest?
+      slowest == true
+    end
+
     def run
       r,w = IO.pipe
       fork do
@@ -40,10 +44,10 @@ module BenchPress
     end
 
     def summary
-      if fastest?
-        "Fastest"
+      if slowest?
+        "Slowest"
       else
-        "#{percent_slower}% Slower"
+        "#{percent_faster}% Faster"
       end
     end
 
@@ -52,7 +56,8 @@ module BenchPress
         :name => name,
         :run_time => run_time,
         :summary => summary,
-        :fastest => fastest
+        :fastest => fastest,
+        :slowest => slowest
       }
     end
 

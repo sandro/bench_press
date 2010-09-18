@@ -36,7 +36,9 @@ module BenchPress
     def grade
       runnables.each do |r|
         r.fastest = fastest == r
+        r.slowest = slowest == r
         r.percent_slower = percentage_slower(r.run_time)
+        r.percent_faster = percentage_faster(r.run_time)
       end
     end
 
@@ -44,6 +46,10 @@ module BenchPress
 
     def percentage_slower(time)
       (((time - fastest.run_time) / time) * 100).to_i
+    end
+
+    def percentage_faster(time)
+      (100 - 100 / (slowest.run_time / time)).to_i
     end
   end
 end

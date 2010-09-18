@@ -7,24 +7,24 @@ describe BenchPress::Runnable do
   end
 
   describe "#summary" do
-    context "when fastest" do
+    context "when slowest" do
       before do
-        subject.stub(:fastest? => true)
+        subject.stub(:slowest? => true)
       end
 
-      it "displays Fastest" do
-        subject.summary.should == "Fastest"
+      it "displays Slowest" do
+        subject.summary.should == "Slowest"
       end
     end
 
-    context "not faster" do
+    context "when faster" do
       before do
-        subject.stub(:fastest? => false)
+        subject.stub(:slowest? => false)
       end
 
-      it "shows the percentage slower" do
-        subject.percent_slower = 25
-        subject.summary.should == "25% Slower"
+      it "shows the percentage faster" do
+        subject.percent_faster = 25
+        subject.summary.should == "25% Faster"
       end
     end
   end

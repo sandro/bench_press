@@ -56,7 +56,15 @@ module BenchPress
     end
 
     def heading
-      %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster over #{formatted_number repetitions} repetitions)
+      slowest_heading
+    end
+
+    def slowest_heading
+      %("#{result.slowest.name}" is up to #{result.fastest.percent_faster}% slower than its alternatives over #{formatted_number repetitions} repetitions)
+    end
+
+    def fastest_heading
+      %("#{result.fastest.name}" is up to #{result.slowest.percent_slower}% faster than its alternatives over #{formatted_number repetitions} repetitions)
     end
 
     def runnable_heading
